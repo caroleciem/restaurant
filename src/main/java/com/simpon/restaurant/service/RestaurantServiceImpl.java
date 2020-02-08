@@ -39,5 +39,28 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     }
 
+    @Override
+    public boolean deleteReview(Long restaurantId, Long reviewId) {
+        Optional<Restaurant> restaurant = this.restaurantRepository.findById(restaurantId);
+        if (restaurant.isPresent()){
+            List<Review> listReviews = restaurant.get().getReviews();
+            boolean reviewExisting = false;
+            for (Review review : listReviews){
+                if (review.getId()== reviewId ){
+                   reviewExisting = true;
+                   break;
+                }
+            }
+            if (reviewExisting) {
+                this.reviewRepository.deleteById(reviewId);
+                return true;
+            }else{
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
+
 
 }

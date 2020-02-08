@@ -32,4 +32,14 @@ public class RestaurantController {
             return ResponseEntity.badRequest().build();
         }
     }
+    @DeleteMapping("/{restaurantId}/reviews/{reviewIdToDelete}")
+    public ResponseEntity<Review> deleteReview(@PathVariable Long restaurantId,@PathVariable Long reviewId){
+        boolean deletionIsPossible = this.restaurantService.deleteReview(restaurantId, reviewId);
+        if (deletionIsPossible){
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }

@@ -21,4 +21,12 @@ public interface RestaurantService {
      * @return created review
      */
     Review createReview(Long restaurantId,Review reviewToCreate);
+
+    /**
+     * remove review for restaurant
+     * @param restaurantId id du restaurant
+     * @param reviewId id review to delete
+     * @return boolean true if removal possible, false otherwise
+     */
+    boolean deleteReview(Long restaurantId,Long reviewId);
 }
