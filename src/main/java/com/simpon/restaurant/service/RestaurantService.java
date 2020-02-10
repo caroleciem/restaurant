@@ -15,6 +15,11 @@ public interface RestaurantService {
     List<Restaurant> getRestaurants();
 
     /**
+     * Get the complete list of restaurants
+     * @return the complete list from persistence layer.
+     */
+    List<Restaurant> getFilteredRestaurants(Integer lowest, Integer highest);
+    /**
      * create review for restaurant
      * @param restaurantId id du restaurant
      * @param reviewToCreate review to create

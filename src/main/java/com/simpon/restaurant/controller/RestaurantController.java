@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/restaurants")
+@CrossOrigin(origins="*")
 public class RestaurantController {
 
     private RestaurantService restaurantService;
@@ -22,6 +23,11 @@ public class RestaurantController {
     public List<Restaurant> getRestaurants(){
        return (this.restaurantService.getRestaurants());
 
+    }
+    @GetMapping("/filter")
+    public List<Restaurant>getfiltered(Integer lowest, Integer highest){
+
+        return (this.restaurantService.getFilteredRestaurants(lowest,highest));
     }
     @PostMapping("/{restaurantId}/reviews")
     public ResponseEntity<Review> addReviewToRestaurant(@PathVariable Long restaurantId, @RequestBody Review reviewToCreate ){
